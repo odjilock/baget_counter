@@ -1,7 +1,7 @@
 import sqlite3
 
 
-connect = sqlite3.connect('database.db')
+connect = sqlite3.connect('database.db', check_same_thread=False)
 cursor = connect.cursor()
 cursor.execute("CREATE TABLE IF NOT EXISTS baget(number STR, count INT)")
 
@@ -54,3 +54,4 @@ def show_all_items():
     cursor.execute("SELECT number, count FROM baget")
     full_info = cursor.fetchall()
     return full_info
+    
