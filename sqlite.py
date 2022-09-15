@@ -30,11 +30,11 @@ def show_count_of_baget(id_number):
     return number[0]
 
 
-def count_minus_one(id_number, baget=1):
+def count_minus_one(id_number):
     '''ex_value = ex_value - 1'''
     cursor.execute(f"SELECT count FROM baget WHERE number={id_number}")
     number = cursor.fetchone()
-    number = number[0] - baget 
+    number = number[0] - 1 
     cursor.execute(f"UPDATE baget SET count={number} WHERE number={id_number}")
     connect.commit()
     return show_count_of_baget(id_number)

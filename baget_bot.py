@@ -1,8 +1,9 @@
 import telebot
 from telebot import types
 from email.message import Message
+import sqlite3
 
-from sqlite import show_all_items
+from sqlite import count_minus_one, show_all_items, show_count_of_baget
 
 
 bot = telebot.TeleBot('5715647780:AAFosHKVw3LGv_ifudkpGua6xCXDr-YDyuI')
@@ -31,9 +32,44 @@ def show_menu(message: Message):
                 bot.send_message(message.chat.id, f'{key}-{value} 🛑')
             else:
                 bot.send_message(message.chat.id, f'{key}-{value}')    
-            
-
+       
+        
+    ###доделать elif '-' in text:
+        try:
+            str_list = []
+            for i in text:
+                str_list.append(i)
+            print(str_list)
+            string_number = ''.join(str_list)
+          
+            for i in range(len(string_number)):
+                string_number.remove('-')
                 
+            
+            print(string_number)
+            count_minus_one(string_number)
+            bot.send_message(message.chat.id, f'багет #{string_number} вычтен\
+            осталось {show_count_of_baget(string_number)}" !')
+        except sqlite3.OperationalError:
+            bot.send_message(message.chat.id, f'проверьте правильность команды\n\
+            {text}\n вычитание "-" должны быть указанно после номера багета')
+   
+
+
+
+
+# list = []
+#             for element in text:
+#                 list.append(element)
+
+
+#             string_number = ''.join(list)
+#             try:
+#                 for i in range(len(str)):
+#                     list.remove('-')
+#             except ValueError:
+#                 print('delete complete')
+
 
 
 
