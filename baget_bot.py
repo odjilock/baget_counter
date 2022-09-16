@@ -9,7 +9,7 @@ bot = telebot.TeleBot('5715647780:AAFosHKVw3LGv_ifudkpGua6xCXDr-YDyuI')
 
 
 @bot.message_handler(commands=['start', 'меню', 'menu', 'info'])
-def menu(message):
+def menu_buttons(message):
      markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
      button_list = types.KeyboardButton('📋список багетов')
      button_info = types.KeyboardButton('BagetInfo')
@@ -19,7 +19,7 @@ def menu(message):
 
 @bot.edited_channel_post_handler(content_types=['text'])
 @bot.message_handler(content_types=['text'])
-def show_menu(message: Message):
+def add_and_remove_products(message: Message):
     text = message.text
     if text == '📋список багетов':
         bot.send_photo(message.chat.id, photo=open('images/baget_list.jpg', 'rb'))
